@@ -107,6 +107,9 @@
                 .then(response => response.json())
                 .then(data => {
                     img.src = data.image;
+                })
+                .catch(() => {
+                    img.src = "https://randomfox.ca/images/1.jpg";
                 });
         }
 
