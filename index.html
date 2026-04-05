@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настроение</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f0e0;
+            color: #333;
+        }
+
+        header {
+            background-color: #e07a5f;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background-color: #d96b4f;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 60px auto;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slider-container {
+            margin: 40px 0;
+        }
+
+        label {
+            font-size: 20px;
+            display: block;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        input[type="range"] {
+            width: 85%;
+            max-width: 500px;
+            height: 8px;
+            accent-color: #e07a5f;
+            cursor: pointer;
+        }
+
+        #mood-value {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 20px 0;
+            min-height: 40px;
+            transition: all 0.4s;
+        }
+
+        #mood-emoji {
+            font-size: 60px;
+            margin: 20px 0;
+            transition: all 0.6s ease;
+        }
+
+        #mood-text {
+            font-size: 22px;
+            margin-top: 10px;
+            min-height: 32px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" id="nav-home">Главная</a>
+            <a href="bio.html" id="nav-bio">Биография</a>
+            <a href="fox.html" id="nav-fox">Случайная лисичка</a>
+        </nav>
+    </header>
+
+    <div class="container" id="main-container">
+        <div class="slider-container">
+            <label for="mood-slider">Уровень настроения</label>
+            <input type="range" id="mood-slider" value="50">
+
+            <div id="mood-emoji">😐</div>
+            <div id="mood-value">50%</div>
+            <div id="mood-text">Нормальное настроение</div>
+        </div>
+    </div>
+
+    <script>
+        const slider = document.getElementById('mood-slider');
+        const moodValue = document.getElementById('mood-value');
+        const moodEmoji = document.getElementById('mood-emoji');
+        const moodText = document.getElementById('mood-text');
+        const body = document.body;
+
+        slider.addEventListener('input', () => {
+            value = slider.value;
+
+            moodValue.textContent = value + "%";
+
+            if (value <= 10) {
+                moodEmoji.textContent = "😭";
+                moodText.textContent = "Всё очень плохо";
+            } else if (value <= 30) {
+                moodEmoji.textContent = "☹️";
+                moodText.textContent = "Грустно";
+            } else if (value <= 45) {
+                moodEmoji.textContent = "🙁";
+                moodText.textContent = "Не очень";
+            } else if (value <= 55) {
+                moodEmoji.textContent = "😐";
+                moodText.textContent = "Норм";
+            } else if (value <= 70) {
+                moodEmoji.textContent = "🙂";
+                moodText.textContent = "Хорошо";
+            } else if (value <= 85) {
+                moodEmoji.textContent = "😊";
+                moodText.textContent = "Отлично!";
+            } else {
+                moodEmoji.textContent = "🥳";
+                moodText.textContent = "Великолепно!";
+            }
+        });
+
+        window.addEventListener('load', () => {
+            document.getElementById('main-container').classList.add('show');
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.toggle('active', link.id === 'nav-home');
+            });
+        });
+    </script>
+
+</body>
+
+</html>
