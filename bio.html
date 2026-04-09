@@ -44,15 +44,7 @@
             background: white;
             border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            line-height: 1.7;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease;
-        }
-
-        .container.show {
-            opacity: 1;
-            transform: translateY(0);
+            line-height: 1.7
         }
 
         h1 {
@@ -193,11 +185,8 @@
             header.classList.toggle('active');
         });
 
-        window.addEventListener('load', () => {
-            document.getElementById('main-container').classList.add('show');
-            document.querySelectorAll('nav a').forEach(link => {
+        document.querySelectorAll('nav a').forEach(link => {
                 link.classList.toggle('active', link.id === 'nav-bio');
-            });
         });
     </script>
 
