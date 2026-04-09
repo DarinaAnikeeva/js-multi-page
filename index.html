@@ -45,14 +45,6 @@
             border-radius: 20px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .container.show {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .slider-container {
@@ -153,12 +145,9 @@
             }
         });
 
-        window.addEventListener('load', () => {
-            document.getElementById('main-container').classList.add('show');
-            document.querySelectorAll('nav a').forEach(link => {
+       document.querySelectorAll('nav a').forEach(link => {
                 link.classList.toggle('active', link.id === 'nav-home');
-            });
-        });
+       });
     </script>
 
 </body>
